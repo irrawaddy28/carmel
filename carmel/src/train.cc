@@ -512,8 +512,8 @@ Weight WFST::train(cascade_parameters& cascade, training_corpus& corpus, Normali
   random_restart_acceptor ra = opts.ra;
   forward_backward fb(*this, cascade, weight_is_prior_count, smoothFloor, true, opts, corpus);
   Weight corpus_p;
-
-  if (~~opts.max_iter) return fb.estimate(corpus_p).ppxper(corpus.totalEmpiricalWeight);
+  // irrawaddy28: Commented the next line. If not commented, EM exits before any training has started!
+  // if (~~opts.max_iter) return fb.estimate(corpus_p).ppxper(corpus.totalEmpiricalWeight);
 
   // when you just want frac counts or a single iteration:
   if (opts.max_iter == 0 || (opts.max_iter == 1 && opts.ran_restarts == 0)) {
